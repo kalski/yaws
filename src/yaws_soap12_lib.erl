@@ -344,7 +344,8 @@ initModel2(WsdlFile, ErlsomOptions, Path, Import, AddFiles) ->
                         filename:join([Path, "wsdl11soap12.xsd"]),
                         [{prefix, "soap"},
                          {include_files, [IncludeWsdl]}]),
-    erlsom:write_hrl(WsdlModel, "/home/kalski/test/wsdl11soap12.hrl"),
+    %% uncomment to generate the wsdl11soap12.hrl file
+    %% erlsom:write_hrl(WsdlModel, "/home/kalski/test/wsdl11soap12.hrl"),
     %% add the xsd model (since xsd is also used in the wsdl)
     WsdlModel2 = erlsom:add_xsd_model(WsdlModel),
     Options = ErlsomOptions ++ makeOptions(Import),
@@ -358,7 +359,8 @@ initModel2(WsdlFile, ErlsomOptions, Path, Import, AddFiles) ->
                             [{prefix, "soap"},
                              {include_files, [{"http://www.w3.org/XML/1998/namespace", undefined, filename:join([Path, "xml.xsd"])}]}]),
     SoapModel = erlsom:add_model(EnvelopeModel, Model),
-    erlsom:write_hrl(EnvelopeModel, "/home/kalski/test/soap-envelope.hrl"),
+    %% uncomment to generate the soap-envelope.hrl file
+    %% erlsom:write_hrl(EnvelopeModel, "/home/kalski/test/soap-envelope.hrl"),
     SoapModel2 = addModels(AddFiles, SoapModel),
     #wsdl{operations = Operations, model = SoapModel2}.
 
